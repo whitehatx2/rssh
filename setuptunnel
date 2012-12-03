@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$#" -ne 1 ]; then
-  echo "Usage: ./setuptunnel /root/rivatekey.ppk (2nd arg is path to private key)" >&2
+  echo "Usage: ./setuptunnel /root/privatekey.ppk (2nd arg is path to private key)" >&2
   exit 1
 fi
 crontab -l > /tmp/dump

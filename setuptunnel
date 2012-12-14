@@ -1,9 +1,10 @@
 #!/bin/bash
-if [ "$#" -ne 2 ]; then
-  echo "Usage: ./setuptunnel /root/rivatekey.ppk 2105 (1st arg is path to private key, 2nd arg is port number to register on.)" >&2
+if [ "$#" -ne 3 ]; then
+  echo "Usage: ./setuptunnel /root/privatekey 2105 19930 (1st arg is path to private key, 2nd arg is remote host port number to register on, 3rd arg is local host port to map)" >&2
   exit 1
 fi
+ssh-add $1
 crontab -l > /tmp/dump
-echo " * * * * * /root/rssh/reverse_ssh" $1 $2 "2>/root/debug.log" >> /tmp/dump
+echo " * * * * * /root/rssh/reverse_ssh.sh" $SSH_AUTH_SOCK $2 $3 "2>/root/debug.log" >> /tmp/dump
 crontab /tmp/dump
 
